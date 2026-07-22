@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["AM8P283P5J.com.o9tech.dote"],
+        "components": [
+          { "/": "/j/*", "comment": "Dote invite links" }
+        ]
+      }
+    ]
+  }
+}

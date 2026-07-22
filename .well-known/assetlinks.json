@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.o9tech.dote",
+      "sha256_cert_fingerprints": ["EA:26:85:F9:4A:FC:B2:EA:EB:56:F6:53:45:8C:B7:71:D0:C4:06:3B:8C:73:81:B8:7F:0F:FD:D9:DB:39:DC:3D"]
+    }
+  }
+]
