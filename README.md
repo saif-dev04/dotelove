@@ -1,10 +1,9 @@
 # dotelove.com
 
-Static host for **Dote**'s deep-link verification files (served via Cloudflare Pages).
+Deployed site for **Dote** — served by Cloudflare Pages (project `dotelove`,
+auto-deploys on push to `main`).
 
-- `/.well-known/apple-app-site-association` — iOS Universal Links (`AM8P283P5J.com.o9tech.dote`)
-- `/.well-known/assetlinks.json` — Android App Links (`com.o9tech.dote`)
-- `_headers` — sets `Content-Type: application/json`
-
-These files are public by design. No secrets here (Apple Team IDs and cert
-fingerprints are public identifiers).
+Source of truth: `deeplinks/site/` in the `saif-dev04/dote-app` repo — edit
+there, then copy here and push. Includes the landing page, privacy policy,
+terms, `/j/*` invite fallback (`_redirects`), and the `.well-known`
+deep-link verification files (AASA + assetlinks).

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dote — Your person, on your home screen</title>
+<meta name="description" content="Dote is a private app for exactly two people. Photos, little notes, doodles and moods — sent straight to each other's home-screen widgets. No ads, no feed, no tracking.">
+<link rel="canonical" href="https://dotelove.com/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#221A26" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dote">
+<meta property="og:title" content="Dote — Your person, on your home screen">
+<meta property="og:description" content="A private app for exactly two people. Photos, notes, doodles and moods, straight to each other's home screens.">
+<meta property="og:url" content="https://dotelove.com/">
+<meta property="og:image" content="https://dotelove.com/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  @font-face {
+    font-family: 'Nunito Sans';
+    src: url('/fonts/NunitoSans-var.woff2') format('woff2-variations');
+    font-weight: 200 1000; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Caveat';
+    src: url('/fonts/Caveat-var.woff2') format('woff2-variations');
+    font-weight: 400 700; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    --canvas:#FBF7F2; --surface:#FFFFFF; --shadow:rgba(201,167,138,.22);
+    --primary:#F76C5E; --on-primary:#FFFFFF; --secondary:#FFB4A2;
+    --accent:#9D8CD6; --golden:#F5C97B; --text:#3D2C3C; --muted:#8A7B88;
+    --divider:rgba(61,44,60,.10); --link:#6F5BA8;
+    --band:#221A26; --band-surface:#2E2433; --band-text:#F5EDE4;
+    --band-muted:rgba(245,237,228,.62); --band-divider:rgba(245,237,228,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas:#221A26; --surface:#2E2433; --shadow:rgba(0,0,0,.30);
+      --primary:#F07E71; --on-primary:#2A1B22; --secondary:#E0A594;
+      --accent:#A99AD9; --golden:#E6C288; --text:#F5EDE4;
+      --muted:rgba(245,237,228,.62); --divider:rgba(245,237,228,.12);
+      --link:#C9BDF0; --band:#1B1420; --band-surface:#2E2433;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--canvas); color: var(--text);
+    font: 400 17px/1.65 'Nunito Sans', -apple-system, 'SF Pro Rounded', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  a { color: var(--link); }
+
+  /* ---------- header (sticky product-site bar) ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20; padding: 14px 0;
+    background: color-mix(in srgb, var(--canvas) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--divider);
+  }
+  header .wrap { display: flex; align-items: center; gap: 10px; }
+  section[id] { scroll-margin-top: 84px; }
+  .mark { width: 34px; height: 34px; flex: none; }
+  .wordmark { font-weight: 800; font-size: 22px; letter-spacing: -.02em; color: var(--text); text-decoration: none; }
+  nav { margin-left: auto; display: flex; gap: 26px; }
+  nav a { color: var(--muted); text-decoration: none; font-weight: 700; font-size: 15px; }
+  nav a:hover { color: var(--text); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 54px 0 46px;
+    background:
+      radial-gradient(1000px 520px at 84% 4%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 68%),
+      radial-gradient(900px 560px at 4% 96%, color-mix(in srgb, var(--secondary) 15%, transparent), transparent 68%);
+  }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  h1 { font-size: clamp(38px, 4.6vw, 64px); line-height: 1.06; letter-spacing: -.025em; font-weight: 900; margin: 0 0 18px; }
+  h1 em { font-style: normal; color: var(--primary); }
+  .lede { font-size: clamp(19px, 1.5vw, 21px); color: var(--muted); max-width: 46ch; margin: 0 0 28px; }
+  .stores { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .store {
+    display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px;
+    background: var(--text); color: var(--canvas); border-radius: 999px;
+    padding: 10px 22px; line-height: 1.25; opacity: .92;
+  }
+  .store b { font-size: 16px; font-weight: 800; }
+  .store span { font-size: 12px; font-weight: 600; opacity: .72; }
+  .free-line { margin: 18px 0 0; font-size: 14.5px; font-weight: 700; color: var(--muted); }
+  .free-line b { color: var(--golden); filter: brightness(.82); }
+  @media (prefers-color-scheme: dark) { .free-line b { filter: none; } }
+
+  /* ---------- widget collage ---------- */
+  .collage {
+    position: relative; width: 340px; height: 430px; margin: 0 auto;
+    border-radius: 30px;
+    background:
+      radial-gradient(circle at 62% 38%, color-mix(in srgb, var(--golden) 34%, transparent), transparent 62%),
+      linear-gradient(160deg, color-mix(in srgb, var(--secondary) 26%, var(--canvas)), color-mix(in srgb, var(--accent) 20%, var(--canvas)));
+  }
+  .widget {
+    position: absolute; background: var(--surface); border-radius: 24px;
+    box-shadow: 0 18px 40px -12px var(--shadow), 0 2px 8px var(--shadow);
+    padding: 16px 18px;
+  }
+  .w-note { width: 236px; top: 34px; left: 22px; transform: rotate(-2.5deg); }
+  .w-head { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; }
+  .w-head time { margin-left: auto; color: var(--muted); font-weight: 600; }
+  .w-note p { font-family: Caveat, cursive; font-size: 25px; line-height: 1.15; font-weight: 600; margin: 10px 0 2px; }
+  .w-days { width: 196px; top: 208px; right: 18px; transform: rotate(2deg); text-align: left; z-index: 2; }
+  .avatars { display: flex; margin-bottom: 8px; }
+  .avatars i {
+    width: 34px; height: 34px; border-radius: 12px; font-style: normal; font-weight: 800;
+    font-size: 14px; color: #fff; display: grid; place-items: center;
+    border: 2.5px solid var(--surface);
+  }
+  .avatars i:first-child { background: linear-gradient(145deg, #F97567, #F0808A); }
+  .avatars i:last-child { background: linear-gradient(145deg, #B98CC0, #9D8CD6); margin-left: -10px; }
+  .w-days b { font-size: 42px; font-weight: 900; letter-spacing: -.02em; line-height: 1; display: block; }
+  .w-days span { color: var(--muted); font-size: 14px; font-weight: 700; }
+  .w-doodle { width: 118px; height: 118px; top: 296px; left: 34px; transform: rotate(-1.5deg); display: grid; place-items: center; }
+  .w-times {
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    background: var(--band); color: var(--band-text); border-radius: 999px;
+    padding: 9px 18px; font-size: 13px; font-weight: 700; white-space: nowrap;
+    box-shadow: 0 12px 28px -8px var(--shadow);
+  }
+  .w-times span { opacity: .6; margin: 0 6px; }
+
+  /* ---------- sections ---------- */
+  section { padding: 64px 0; }
+  .alt { background: color-mix(in srgb, var(--surface) 60%, var(--canvas)); }
+  .alt .card, .alt .plan { border: 1px solid var(--divider); }
+  .kicker { color: var(--primary); font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; margin: 0 0 10px; }
+  h2 { font-size: clamp(28px, 3.4vw, 38px); font-weight: 900; letter-spacing: -.02em; line-height: 1.15; margin: 0 0 14px; }
+  .sub { color: var(--muted); font-size: 18px; max-width: 56ch; margin: 0; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .card {
+    background: var(--surface); border-radius: 22px; padding: 26px 24px;
+    box-shadow: 0 10px 30px -12px var(--shadow);
+  }
+  .card svg { width: 40px; height: 40px; color: var(--primary); margin-bottom: 14px; }
+  .card:nth-child(2) svg { color: var(--golden); filter: brightness(.9); }
+  .card:nth-child(3) svg { color: var(--accent); }
+  @media (prefers-color-scheme: dark) { .card:nth-child(2) svg { filter: none; } }
+  .card h3 { font-size: 20px; font-weight: 800; margin: 0 0 8px; }
+  .card p { color: var(--muted); font-size: 15.5px; margin: 0; }
+
+  /* ---------- privacy band (full-bleed dark section) ---------- */
+  .bandsec { background: var(--band); color: var(--band-text); }
+  .bandsec .kicker { color: var(--golden); }
+  .bandsec h2 { color: var(--band-text); }
+  .bandsec .sub { color: var(--band-muted); }
+  .bandsec ul { list-style: none; margin: 30px 0 26px; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; }
+  .bandsec li { background: var(--band-surface); border-radius: 18px; padding: 18px 20px; font-size: 15.5px; color: var(--band-muted); }
+  .bandsec li b { display: block; color: var(--band-text); font-size: 16.5px; margin-bottom: 4px; }
+  .bandsec a { color: var(--golden); font-weight: 700; }
+
+  /* ---------- never list ---------- */
+  .never { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; margin-top: 30px; max-width: 860px; }
+  .never p { margin: 0; padding-left: 30px; position: relative; color: var(--muted); font-size: 16px; }
+  .never p::before { content: '✕'; position: absolute; left: 0; top: 0; color: var(--primary); font-weight: 900; }
+
+  /* ---------- pricing ---------- */
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; max-width: 860px; }
+  .plan { background: var(--surface); border-radius: 22px; padding: 28px 26px; box-shadow: 0 10px 30px -12px var(--shadow); }
+  .plan.plus { border: 2px solid var(--golden); }
+  .plan h3 { margin: 0 0 4px; font-size: 22px; font-weight: 900; }
+  .price { font-size: 17px; font-weight: 800; color: var(--primary); margin: 0 0 12px; }
+  .plan p { color: var(--muted); font-size: 15.5px; margin: 0; }
+  .plan .both { margin-top: 14px; font-weight: 800; color: var(--text); font-size: 14.5px; }
+
+  /* ---------- faq ---------- */
+  .faq { max-width: 760px; }
+  details { border-bottom: 1px solid var(--divider); padding: 6px 0; }
+  summary { cursor: pointer; font-weight: 800; font-size: 17.5px; padding: 14px 0; list-style: none; display: flex; align-items: center; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; margin-left: auto; color: var(--primary); font-size: 24px; font-weight: 700; transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: 0 0 18px; color: var(--muted); max-width: 62ch; }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--divider); margin-top: 30px; padding: 36px 0 46px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; }
+  footer .brand { display: flex; align-items: center; gap: 9px; font-weight: 800; }
+  footer .brand .mark { width: 24px; height: 24px; }
+  footer nav { margin-left: auto; gap: 22px; }
+  .fineprint { width: 100%; color: var(--muted); font-size: 13px; margin-top: 8px; }
+
+  /* Large desktops: let the collage and rhythm grow into the room. */
+  @media (min-width: 1080px) {
+    .collage { transform: scale(1.24); }
+    .hero .wrap { min-height: 560px; }
+    section { padding: 78px 0; }
+    .card { padding: 32px 30px; }
+    .bandsec ul { gap: 22px 32px; }
+  }
+  /* Very large displays: scale the whole composition, not just the column.
+     (css zoom doesn't change media-query evaluation, so breakpoints hold.) */
+  @media (min-width: 1700px) { html { zoom: 1.15; } }
+  @media (min-width: 2100px) { html { zoom: 1.3; } }
+  @media (min-width: 2800px) { html { zoom: 1.5; } }
+  @media (max-width: 840px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 60px; }
+    .cards, .bandsec ul, .never, .plans { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+    nav .desk { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#F97567"/><stop offset=".3" stop-color="#F0808A"/>
+          <stop offset=".7" stop-color="#B98CC0"/><stop offset="1" stop-color="#9D8CD6"/>
+        </linearGradient>
+        <radialGradient id="lens" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#FDE7B2" stop-opacity=".98"/>
+          <stop offset=".55" stop-color="#F7CE80" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#F7CE80" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+      <circle cx="24.3" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/>
+      <circle cx="39.7" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/>
+      <circle cx="32" cy="32" r="15" fill="url(#lens)"/>
+    </svg>
+    <a class="wordmark" href="/">Dote</a>
+    <nav>
+      <a class="desk" href="#features">Features</a>
+      <a class="desk" href="#pricing">Pricing</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="#faq">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Your person, on your <em>home screen</em>.</h1>
+        <p class="lede">Dote is a private little app for exactly two people. Send a photo, a note, a doodle, or a mood — it lands on each other's home-screen widgets in seconds, wherever in the world you both are.</p>
+        <div class="stores">
+          <span class="store"><b>App Store</b><span>coming soon</span></span>
+          <span class="store"><b>Google Play</b><span>coming soon</span></span>
+        </div>
+        <p class="free-line">Free for both of you · <b>Plus</b> is one purchase that covers the couple</p>
+      </div>
+
+      <div class="collage" role="img" aria-label="Dote home-screen widgets: a handwritten note from Jun, a 1,247 days-together counter, and a doodle of a tiny umbrella with a heart">
+        <div class="widget w-note">
+          <div class="w-head">Jun&ensp;🌙 <time>just now</time></div>
+          <p>coffee's better than when you're here</p>
+        </div>
+        <div class="widget w-days">
+          <div class="avatars"><i>M</i><i>J</i></div>
+          <b>1,247</b><span>days of us</span>
+        </div>
+        <div class="widget w-doodle">
+          <svg viewBox="0 0 80 80" aria-hidden="true" width="76" height="76" fill="none"
+               stroke="#F76C5E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 38 C14 22, 66 22, 66 38 C57 33, 49 33, 40 38 C31 33, 23 33, 14 38 Z"/>
+            <path d="M40 20 v-6"/>
+            <path d="M40 38 v22 c0 7 10 7 10 0"/>
+            <path d="M23 55 c-4-5 2-11 6-7 4-4 10 2 6 7 l-6 6 z" stroke="#9D8CD6" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="w-times">Toronto 8:41 am ☀️<span>·</span>Seoul 9:41 pm 🌙</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features" class="alt">
+    <div class="wrap">
+      <p class="kicker">How it feels</p>
+      <h2>Small moments, straight to their pocket.</h2>
+      <p class="sub">No feed to scroll, no likes to count. Just the two of you, trading little proofs of "thinking of you".</p>
+      <div class="cards">
+        <div class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.5-9C.9 7.9 3.2 4.5 6.7 4.5c2.2 0 3.9 1.3 5.3 3 1.4-1.7 3.1-3 5.3-3 3.5 0 5.8 3.4 4.2 7-2 4.4-9.5 9-9.5 9z"/></svg>
+          <h3>Send a moment</h3>
+          <p>Photos, little notes, finger doodles, and how you're feeling right now. Each one appears on your person's widget — usually within seconds of sending.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9.5" cy="12" r="6.5"/><circle cx="14.5" cy="12" r="6.5"/></svg>
+          <h3>Count the days of us</h3>
+          <p>A days-together counter that quietly grows, milestones worth actually celebrating, and a gentle streak. Streaks pause when life happens — they never punish.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.5l7 2.5M21 3l-6.5 18L11 13M21 3 11 13"/></svg>
+          <h3>Made for the distance</h3>
+          <p>See each other's local time at a glance and count down to the next visit, together. Built LDR-first — because 10,000 km shouldn't feel like it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bandsec">
+    <div class="wrap">
+      <p class="kicker">Private by design</p>
+          <h2>Built for two. Sealed for two.</h2>
+          <p class="sub">Everything you share in Dote is visible to exactly one person: yours.</p>
+          <ul>
+            <li><b>Just the two of you</b>Every photo and note is locked to your couple at the database layer. No feed, no followers, no public anything.</li>
+            <li><b>No ads, no trackers</b>Zero advertising SDKs, zero third-party analytics. We measure one thing: whether your moments arrive fast.</li>
+            <li><b>Start without an account</b>No email or phone number needed to begin. To us you're a random ID — and that's the point.</li>
+            <li><b>Delete for real</b>Export your memories any time. If you unpair, there's a 30-day change-of-heart window — then everything is permanently gone.</li>
+          </ul>
+      <a href="/privacy/">Read the privacy policy — it's short and in plain words →</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">The honest bit</p>
+      <h2>Things Dote will never do.</h2>
+      <div class="never">
+        <p>No virtual pet that starves if you don't open the app.</p>
+        <p>No "your partner is waiting…" guilt notifications.</p>
+        <p>No countdown-timer paywalls or fake urgency.</p>
+        <p>No free tier crippled on purpose.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="alt">
+    <div class="wrap">
+      <p class="kicker">Pricing</p>
+      <h2>The heart of Dote is free.</h2>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free</h3>
+          <p class="price">$0, forever</p>
+          <p>Send moments, the home-screen widget, your days-together counter, moods, and streaks. Everything a couple needs, respectably free.</p>
+        </div>
+        <div class="plan plus">
+          <h3>Dote Plus</h3>
+          <p class="price">$3.99/mo · $19.99/yr · $34.99 once</p>
+          <p>Premium widget and note styles, more countdowns, and first dibs on new toys. Style on top — never the core. Yearly starts with a 7-day free trial.</p>
+          <p class="both">One purchase covers both of you. Always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker">Questions</p>
+      <h2>Fair things to ask.</h2>
+      <div class="faq">
+        <details>
+          <summary>Does one subscription really cover us both?</summary>
+          <p>Yes. When one of you gets Plus, you both have it — on both phones. Charging a couple twice for the same relationship felt wrong, so we don't.</p>
+        </details>
+        <details>
+          <summary>One of us has an iPhone, the other Android. Does it work?</summary>
+          <p>Yes. Dote ships on iOS and Android, and mixed couples are first-class — widgets, moments and moods work the same in both directions.</p>
+        </details>
+        <details>
+          <summary>What happens to our stuff if we break up?</summary>
+          <p>You can export your memories first, always. Unpairing starts a 30-day window in case you change your minds — either of you can invite the other to rejoin, and everything comes back. After 30 days it's permanently deleted, photos included. That's a promise we keep, not a threat we sell.</p>
+        </details>
+        <details>
+          <summary>When can we get it?</summary>
+          <p>Dote is in on-device testing now and launching on the App Store and Google Play soon. Anything else on your mind — <a href="mailto:support@dotelove.com">support@dotelove.com</a>. A human reads it.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="url(#bg)"/><circle cx="24.3" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/><circle cx="39.7" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/><circle cx="32" cy="32" r="15" fill="url(#lens)"/></svg>
+      Dote · made for two
+    </span>
+    <nav>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="mailto:support@dotelove.com">support@dotelove.com</a>
+    </nav>
+    <p class="fineprint">© 2026 O9Tech. This site sets no cookies, runs no analytics, and loads nothing from third parties.</p>
+  </div>
+</footer>
+
+</body>
+</html>

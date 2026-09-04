@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Dote</title>
+<meta name="description" content="Dote's privacy policy, in plain words: what we store, what we never collect, who can see what, and how deletion really works.">
+<link rel="canonical" href="https://dotelove.com/privacy/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#221A26" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dote">
+<meta property="og:title" content="Privacy at Dote">
+<meta property="og:description" content="What we store, what we never collect, and how deletion really works — in plain words.">
+<meta property="og:url" content="https://dotelove.com/privacy/">
+<meta property="og:image" content="https://dotelove.com/og.jpg">
+<style>
+  @font-face {
+    font-family: 'Nunito Sans';
+    src: url('/fonts/NunitoSans-var.woff2') format('woff2-variations');
+    font-weight: 200 1000; font-style: normal; font-display: swap;
+  }
+  :root {
+    --canvas:#FBF7F2; --surface:#FFFFFF; --shadow:rgba(201,167,138,.22);
+    --primary:#F76C5E; --accent:#9D8CD6; --golden:#F5C97B;
+    --text:#3D2C3C; --muted:#8A7B88; --divider:rgba(61,44,60,.10); --link:#6F5BA8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas:#221A26; --surface:#2E2433; --shadow:rgba(0,0,0,.30);
+      --primary:#F07E71; --accent:#A99AD9; --golden:#E6C288;
+      --text:#F5EDE4; --muted:rgba(245,237,228,.62); --divider:rgba(245,237,228,.12); --link:#C9BDF0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--canvas); color: var(--text);
+    font: 400 17px/1.7 'Nunito Sans', -apple-system, 'SF Pro Rounded', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--link); }
+  header {
+    position: sticky; top: 0; z-index: 20; padding: 14px 0;
+    background: color-mix(in srgb, var(--canvas) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--divider);
+  }
+  header .wrap { max-width: 1200px; display: flex; align-items: center; gap: 10px; }
+  .mark { width: 30px; height: 30px; flex: none; }
+  .wordmark { font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; letter-spacing: -.02em; }
+  header nav { margin-left: auto; display: flex; gap: 22px; }
+  header nav a { font-weight: 700; font-size: 14.5px; text-decoration: none; color: var(--muted); }
+  header nav a:hover { color: var(--text); }
+  @media (min-width: 1700px) { html { zoom: 1.15; } }
+  @media (min-width: 2100px) { html { zoom: 1.3; } }
+  @media (min-width: 2800px) { html { zoom: 1.5; } }
+  @media (max-width: 560px) { header nav { gap: 16px; } header nav a.desk { display: none; } }
+  main { padding: 26px 0 70px; }
+  h1 { font-size: clamp(32px, 5vw, 42px); font-weight: 900; letter-spacing: -.02em; line-height: 1.1; margin: 10px 0 6px; }
+  .meta { color: var(--muted); font-weight: 600; font-size: 15px; margin: 0 0 28px; }
+  h2 { font-size: 23px; font-weight: 800; letter-spacing: -.01em; margin: 44px 0 10px; }
+  p, li { color: var(--text); }
+  .quiet { color: var(--muted); }
+  ul { padding-left: 22px; margin: 10px 0 16px; }
+  li { margin: 7px 0; }
+  li b, p b { font-weight: 800; }
+  .tldr {
+    background: var(--surface); border-radius: 20px; padding: 24px 26px;
+    box-shadow: 0 10px 30px -12px var(--shadow); margin: 26px 0 8px;
+  }
+  .tldr h2 { margin: 0 0 10px; font-size: 19px; }
+  .tldr ul { margin: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; margin: 14px 0 6px; }
+  th { text-align: left; font-weight: 800; padding: 10px 12px 10px 0; border-bottom: 2px solid var(--divider); }
+  td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--divider); vertical-align: top; }
+  td:first-child { font-weight: 700; white-space: nowrap; }
+  footer { border-top: 1px solid var(--divider); padding: 26px 0 44px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#F97567"/><stop offset=".3" stop-color="#F0808A"/>
+          <stop offset=".7" stop-color="#B98CC0"/><stop offset="1" stop-color="#9D8CD6"/>
+        </linearGradient>
+        <radialGradient id="lens" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#FDE7B2" stop-opacity=".98"/>
+          <stop offset=".55" stop-color="#F7CE80" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#F7CE80" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+      <circle cx="24.3" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/>
+      <circle cx="39.7" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/>
+      <circle cx="32" cy="32" r="15" fill="url(#lens)"/>
+    </svg>
+    <a class="wordmark" href="/">Dote</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/terms/">Terms</a>
+      <a class="desk" href="mailto:support@dotelove.com">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>Privacy at Dote</h1>
+    <p class="meta">Effective September 4, 2026 · applies to the Dote app and this website</p>
+
+    <p>Dote exists so two people can share small moments privately. That only works if you can trust where those moments go, so this policy is written to be actually read: short sections, plain words, no surprises buried in clause 14(b).</p>
+
+    <div class="tldr">
+      <h2>The short version</h2>
+      <ul>
+        <li>Everything you share in Dote is visible to exactly <b>one person</b>: your partner.</li>
+        <li><b>No ads, no third-party analytics, no data sales.</b> Not now, not as a "pivot" later.</li>
+        <li>You can use Dote <b>without an email or phone number</b>.</li>
+        <li>Deleting is real: unpair and everything is <b>permanently erased after a 30-day grace window</b>.</li>
+      </ul>
+    </div>
+
+    <h2>Who we are</h2>
+    <p>Dote is made by <b>O9Tech</b> ("we", "us"). For anything in this policy, write to <a href="mailto:support@dotelove.com">support@dotelove.com</a> — a human reads it.</p>
+
+    <h2>What we store</h2>
+    <p><b>Your account.</b> When you start, we create an anonymous account: a random ID, your display name (whatever you type — a nickname is fine), your timezone (so your partner can see your local time), and a device push token with its platform (iOS or Android) so notifications can reach your phone. No email or phone number is required. If you later link a sign-in method to recover your account, we store what that provider gives us for login only.</p>
+    <p><b>What you two share.</b> Photos, notes, drawings, moods, reactions, "thinking of you" taps, countdown events (a label, an emoji, a date), and your relationship start date. Photos and drawings live in a private storage bucket and are served only through short-lived signed links.</p>
+    <p><b>Delivery telemetry.</b> When a moment is delivered we record which couple it belonged to, the moment type, how many milliseconds delivery took, the platform, and whether the app was open at the time. Never the content. We use this for exactly one thing: keeping widget delivery fast.</p>
+    <p><b>Safety reports.</b> If you report something from inside the app, we store the report so we can review and act on it.</p>
+    <p><b>Purchases.</b> If you get Dote Plus, payment happens entirely through the App Store or Google Play — we never see card numbers. We receive only your subscription status (product, expiry, store identifiers) via our subscription processor, RevenueCat, so Plus can unlock for both of you.</p>
+
+    <h2>What we never collect</h2>
+    <ul>
+      <li>No contact-list upload. Ever.</li>
+      <li>No location tracking — your timezone is a setting, not a sensor.</li>
+      <li>No advertising identifiers, ad SDKs, or third-party analytics SDKs.</li>
+      <li>No browsing or off-app activity of any kind.</li>
+      <li>This website sets <b>no cookies</b> and loads nothing from third-party servers.</li>
+    </ul>
+
+    <h2>Who can see what</h2>
+    <p>Your partner sees what you share with them, plus your display name, timezone, and current mood. They never see technical details like your push token — that's excluded at the database layer.</p>
+    <p>Nobody else sees your content. Access is enforced with row-level security scoped to your couple: the rule that "only these two accounts can read these rows" lives in the database itself, not just in the app. Our operational access is limited to running the service and reviewing content that has been reported to us.</p>
+    <p>We do not sell, rent, or trade your data with anyone. There is no "trusted partners" list.</p>
+
+    <h2>Where your data lives and how it moves</h2>
+    <p>Dote runs on <b>Supabase</b> (managed database and file storage), encrypted in transit and encrypted at rest by our providers. To reach your phone quickly, moments travel through the platform push services — <b>Apple Push Notification service</b> on iOS and Google's <b>Firebase Cloud Messaging</b> — which means a moment's text and a short-lived link to its image pass through Apple's or Google's delivery infrastructure the same way your other notifications do. This website is served by <b>Cloudflare</b>.</p>
+    <table>
+      <tr><th>Service</th><th>What it does for Dote</th></tr>
+      <tr><td>Supabase</td><td>Database, file storage, and anonymous sign-in</td></tr>
+      <tr><td>Apple APNs / Google FCM</td><td>Deliver push notifications to your device</td></tr>
+      <tr><td>RevenueCat</td><td>Validates Plus purchases (no payment details)</td></tr>
+      <tr><td>Cloudflare</td><td>Hosts and serves dotelove.com</td></tr>
+    </table>
+    <p class="quiet">That's the whole list.</p>
+
+    <h2>On your phones</h2>
+    <p>So your widget works instantly and offline, the most recent moment (including its image) is cached on both partners' devices in the app's private container. Uninstalling Dote removes it.</p>
+
+    <h2>How long we keep things, and deletion</h2>
+    <ul>
+      <li><b>While you're paired:</b> your shared content stays until one of you deletes it or you unpair.</li>
+      <li><b>Deleting a moment</b> removes it from both partners' apps immediately, and the stored record and media are permanently erased within 30 days.</li>
+      <li><b>Unpairing:</b> you'll be offered an export first. Then your couple's data is archived for a 30-day grace window — in case you change your minds, either of you can invite the other to rejoin and everything comes back. After 30 days it is <b>permanently deleted, photos included</b>. Rejoining after that isn't possible, because the deletion is real.</li>
+      <li><b>Deleting your account</b> (in Settings, or by emailing us) removes your account and everything owned by it.</li>
+      <li><b>Delivery telemetry and reports</b> are deleted along with the couple they belong to.</li>
+    </ul>
+
+    <h2>Legal bases</h2>
+    <p>Where the law asks us to name one (GDPR and friends): we process your content and account data to <b>provide the service you asked for</b> (delivering moments between the two of you); delivery telemetry and safety-report handling under our <b>legitimate interest</b> in keeping the service working and safe; and notifications only with the <b>permission</b> you grant at the operating-system level, which you can withdraw in your phone's settings any time.</p>
+
+    <h2>Your rights</h2>
+    <p>Wherever you live, we honor the spirit of GDPR- and CCPA-style rights: ask us to access, export, correct, or delete your data, and we'll do it. Most of this you can do yourself in the app (export, edit your name, unpair, delete account); for anything else, email <a href="mailto:support@dotelove.com">support@dotelove.com</a>. If you believe we've mishandled your data, you can also complain to your local data-protection authority — but we'd appreciate the chance to fix it first.</p>
+
+    <h2>Children</h2>
+    <p>Dote is for people in a relationship and is not directed at children under 13 (or the higher minimum age where you live). We don't knowingly collect data from children; if we learn we have, we delete the account.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If we change this policy, we'll update this page and its effective date. If a change is material, we'll tell you in the app before it takes effect — not after.</p>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:support@dotelove.com">support@dotelove.com</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 O9Tech</span>
+    <a href="/">dotelove.com</a>
+    <a href="/terms/">Terms</a>
+    <a href="mailto:support@dotelove.com">support@dotelove.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
