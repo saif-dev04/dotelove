@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete your account — Dote</title>
+<meta name="description" content="Dote's terms of service: your content stays yours, what Plus covers, and the ground rules — in plain words.">
+<link rel="canonical" href="https://dotelove.com/delete-account/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#221A26" media="(prefers-color-scheme: dark)">
+<style>
+  @font-face {
+    font-family: 'Nunito Sans';
+    src: url('/fonts/NunitoSans-var.woff2') format('woff2-variations');
+    font-weight: 200 1000; font-style: normal; font-display: swap;
+  }
+  :root {
+    --canvas:#FBF7F2; --surface:#FFFFFF; --shadow:rgba(201,167,138,.22);
+    --primary:#F76C5E; --text:#3D2C3C; --muted:#8A7B88;
+    --divider:rgba(61,44,60,.10); --link:#6F5BA8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas:#221A26; --surface:#2E2433; --shadow:rgba(0,0,0,.30);
+      --primary:#F07E71; --text:#F5EDE4; --muted:rgba(245,237,228,.62);
+      --divider:rgba(245,237,228,.12); --link:#C9BDF0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--canvas); color: var(--text);
+    font: 400 17px/1.7 'Nunito Sans', -apple-system, 'SF Pro Rounded', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--link); }
+  header {
+    position: sticky; top: 0; z-index: 20; padding: 14px 0;
+    background: color-mix(in srgb, var(--canvas) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--divider);
+  }
+  header .wrap { max-width: 1200px; display: flex; align-items: center; gap: 10px; }
+  .mark { width: 30px; height: 30px; flex: none; }
+  .wordmark { font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; letter-spacing: -.02em; }
+  header nav { margin-left: auto; display: flex; gap: 22px; }
+  header nav a { font-weight: 700; font-size: 14.5px; text-decoration: none; color: var(--muted); }
+  header nav a:hover { color: var(--text); }
+  @media (min-width: 1700px) { html { zoom: 1.15; } }
+  @media (min-width: 2100px) { html { zoom: 1.3; } }
+  @media (min-width: 2800px) { html { zoom: 1.5; } }
+  @media (max-width: 560px) { header nav { gap: 16px; } header nav a.desk { display: none; } }
+  main { padding: 26px 0 70px; }
+  h1 { font-size: clamp(32px, 5vw, 42px); font-weight: 900; letter-spacing: -.02em; line-height: 1.1; margin: 10px 0 6px; }
+  .meta { color: var(--muted); font-weight: 600; font-size: 15px; margin: 0 0 28px; }
+  h2 { font-size: 22px; font-weight: 800; margin: 40px 0 10px; }
+  ul { padding-left: 22px; margin: 10px 0 16px; }
+  li { margin: 7px 0; }
+  footer { border-top: 1px solid var(--divider); padding: 26px 0 44px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#F97567"/><stop offset=".3" stop-color="#F0808A"/>
+          <stop offset=".7" stop-color="#B98CC0"/><stop offset="1" stop-color="#9D8CD6"/>
+        </linearGradient>
+        <radialGradient id="lens" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#FDE7B2" stop-opacity=".98"/>
+          <stop offset=".55" stop-color="#F7CE80" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#F7CE80" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+      <circle cx="24.3" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/>
+      <circle cx="39.7" cy="32" r="17.3" fill="#FFFBF5" opacity=".4"/>
+      <circle cx="32" cy="32" r="15" fill="url(#lens)"/>
+    </svg>
+    <a class="wordmark" href="/">Dote</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/privacy/">Privacy</a>
+      <a class="desk" href="mailto:support@dotelove.com">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>Delete your Dote account &amp; data</h1>
+    <p class="meta">Applies to the Dote app by O9Tech (com.o9tech.dote) · takes effect immediately, permanent after 30 days</p>
+
+    <h2>Delete your account in the app</h2>
+    <ul>
+      <li>Open <b>Dote</b> → <b>Us</b> tab → <b>Privacy &amp; data</b> → <b>Delete account</b>.</li>
+      <li>You'll be offered a full export of your memories first — it's always free.</li>
+      <li>Confirm, and your account is deleted. No email, call, or approval needed.</li>
+    </ul>
+
+    <h2>Or request deletion by email</h2>
+    <p>Can't open the app (lost phone, uninstalled)? Email <a href="mailto:support@dotelove.com">support@dotelove.com</a> from any address, tell us the display name you used, and we'll delete the account for you. A human reads it.</p>
+
+    <h2>What gets deleted, and when</h2>
+    <ul>
+      <li><b>Deleted:</b> your account (the anonymous ID and any linked sign-in), your display name and timezone, your device push token, and every moment you own — photos, notes, drawings, moods, reactions, taps and countdowns, including the files in storage.</li>
+      <li><b>The shared couple space</b> follows the unpair rules: it's archived for a <b>30-day change-of-heart window</b> (either partner can restore it by rejoining), then <b>permanently deleted, photos included</b>.</li>
+      <li><b>Kept:</b> nothing after that window. Delivery telemetry (timing numbers, never content) and any safety reports are deleted along with the couple they belong to.</li>
+    </ul>
+
+    <h2>Delete some data without deleting your account</h2>
+    <ul>
+      <li>Any single moment can be deleted in the app (open the moment → <b>⋯</b> → <b>Delete</b>). It disappears from both partners' apps immediately and is permanently erased from our servers within 30 days.</li>
+      <li>Unpairing (Us tab → <b>Unpair</b>) removes the shared space on the same 30-day schedule while your account itself remains.</li>
+      <li>For anything else — export, correction, or a specific erasure request — email <a href="mailto:support@dotelove.com">support@dotelove.com</a>.</li>
+    </ul>
+
+    <p>The full detail lives in our <a href="/privacy/">privacy policy</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 O9Tech</span>
+    <a href="/">dotelove.com</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="mailto:support@dotelove.com">support@dotelove.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
