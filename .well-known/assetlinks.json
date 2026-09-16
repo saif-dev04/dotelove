@@ -4,7 +4,11 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.o9tech.dote",
-      "sha256_cert_fingerprints": ["EA:26:85:F9:4A:FC:B2:EA:EB:56:F6:53:45:8C:B7:71:D0:C4:06:3B:8C:73:81:B8:7F:0F:FD:D9:DB:39:DC:3D"]
+      "sha256_cert_fingerprints": [
+        "9F:F6:76:87:03:D1:73:AF:C7:0F:2D:F1:AB:38:70:31:43:74:61:58:B2:D1:FC:1F:56:B4:74:80:AA:6A:EF:F3",
+        "29:77:0B:78:53:7C:E3:56:B5:E7:D6:40:D9:0C:42:CC:11:5A:F5:DB:74:0D:BD:A8:2A:7D:5E:79:5F:B2:14:BD",
+        "EA:26:85:F9:4A:FC:B2:EA:EB:56:F6:53:45:8C:B7:71:D0:C4:06:3B:8C:73:81:B8:7F:0F:FD:D9:DB:39:DC:3D"
+      ]
     }
   }
 ]
