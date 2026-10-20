@@ -26,12 +26,14 @@
     --canvas:#FBF7F2; --surface:#FFFFFF; --shadow:rgba(201,167,138,.25);
     --primary:#F76C5E; --on-primary:#FFFFFF; --golden:#F5C97B;
     --text:#3D2C3C; --muted:#8A7B88; --link:#6F5BA8;
+    --notice-bg:#FFF4E5; --notice-text:#8A4B08;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --canvas:#221A26; --surface:#2E2433; --shadow:rgba(0,0,0,.35);
       --primary:#F07E71; --on-primary:#2A1B22; --golden:#E6C288;
       --text:#F5EDE4; --muted:rgba(245,237,228,.62); --link:#C9BDF0;
+      --notice-bg:#3D2B1B; --notice-text:#F8C182;
     }
   }
   * { box-sizing: border-box; }
@@ -57,7 +59,16 @@
   .open {
     display: inline-block; background: var(--primary); color: var(--on-primary);
     font-weight: 800; font-size: 17px; text-decoration: none;
-    border-radius: 999px; padding: 15px 36px; margin-bottom: 20px;
+    border-radius: 999px; padding: 15px 36px; margin-bottom: 16px;
+    cursor: pointer; border: none;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  .open:active { transform: scale(0.97); }
+  .notice {
+    display: none; font-size: 14px; font-weight: 600;
+    background: var(--notice-bg); color: var(--notice-text);
+    padding: 10px 16px; border-radius: 12px; margin-bottom: 18px;
+    line-height: 1.45;
   }
   .hint { font-size: 14.5px; }
   .hint a { color: var(--link); font-weight: 700; }
@@ -91,7 +102,10 @@
     <h1>Someone dotes on you.</h1>
     <p>You've been invited to pair on Dote — photos, notes and doodles, straight to each other's home screens.</p>
     <div class="code" id="code" aria-label="Your invite code"></div>
-    <a class="open" id="open" href="dote://j/">Open in Dote</a>
+    <a class="open" id="open" href="#open">Open in Dote</a>
+    <div class="notice" id="notice">
+      Dote is currently in testing and not published on the stores yet. Redirecting you to the store...
+    </div>
     <p class="hint">If the app doesn't open, you don't have Dote yet — it's coming to the App Store and Google Play very soon. Keep this link; once Dote is installed, tapping it pairs you<span id="withcode"></span>.</p>
   </div>
   <footer><a href="/">What's Dote? →</a></footer>
@@ -99,13 +113,64 @@
 <script>
   // /j/CODE → show the code and point the app link at it.
   var m = location.pathname.match(/^\/j\/([A-Za-z0-9-]{4,12})$/);
-  if (m) {
-    var code = m[1].toUpperCase();
+  var code = m ? m[1].toUpperCase() : '';
+  
+  if (code) {
     var el = document.getElementById('code');
-    el.textContent = code;
-    el.style.display = 'block';
-    document.getElementById('open').href = 'dote://j/' + code;
-    document.getElementById('withcode').textContent = ' (or enter code ' + code + ' by hand)';
+    if (el) {
+      el.textContent = code;
+      el.style.display = 'block';
+    }
+    var withcodeEl = document.getElementById('withcode');
+    if (withcodeEl) {
+      withcodeEl.textContent = ' (or enter code ' + code + ' by hand)';
+    }
+  }
+
+  var openBtn = document.getElementById('open');
+  var noticeEl = document.getElementById('notice');
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Copy invite code to clipboard
+      if (code && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).catch(function() {});
+      }
+
+      // Display in-page status message
+      if (noticeEl) {
+        noticeEl.style.display = 'block';
+      }
+
+      var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+      var isAndroid = /android/i.test(ua);
+      var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+
+      var storeUrl = 'https://play.google.com/store/apps/details?id=com.o9tech.dote';
+      if (isAndroid) {
+        storeUrl = 'https://play.google.com/store/apps/details?id=com.o9tech.dote' + 
+                   (code ? '&referrer=invite_code%3D' + encodeURIComponent(code) : '');
+      } else if (isIOS) {
+        storeUrl = 'https://apps.apple.com/app/id6470000000';
+      }
+
+      // Try opening installed app first (if installed)
+      if (code) {
+        window.location.href = 'dote://j/' + code;
+      } else {
+        window.location.href = 'dote://';
+      }
+
+      // If app isn't installed, navigate to the Play Store / App Store
+      var start = Date.now();
+      setTimeout(function() {
+        if (!document.hidden && (Date.now() - start < 2500)) {
+          window.location.href = storeUrl;
+        }
+      }, 800);
+    });
   }
 </script>
 </body>
